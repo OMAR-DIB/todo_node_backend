@@ -1,4 +1,5 @@
 const mongoose =  require('mongoose');
+const User = require('./user.modules');
 
 const taskSchema = new mongoose.Schema({
     title : {
@@ -8,6 +9,11 @@ const taskSchema = new mongoose.Schema({
     description :{
         type : String,
         required : false,
+    },
+    User : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'User',
+        required : [true, 'User is required'],
     },
     createdAt : {
         type : Date,

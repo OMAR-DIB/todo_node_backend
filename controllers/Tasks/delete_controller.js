@@ -1,4 +1,4 @@
-const Task = require('../models/task.modules.js');
+const Task = require('../../models/task.modules.js');
 
 // delete task by id
 const deleteTaskById = async (req, res) => {

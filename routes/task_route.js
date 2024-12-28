@@ -1,23 +1,38 @@
 const express = require('express');
 const router = express.Router();
-const {getAllTasks,getTaskById} = require('../controllers/get_controller.js');// productController.getTaskById
-const {updateTaskById} = require('../controllers/put_controller.js');
-const {createTask} = require('../controllers/post_controller.js'); 
-const {deleteTaskById} = require('../controllers/delete_controller.js');
+const { getAllTasks, getTaskById } = require('../controllers/Tasks/get_controller.js');// productController.getTaskById
+const { updateTaskById } = require('../controllers/Tasks/put_controller.js');
+const { createTask } = require('../controllers/Tasks/post_controller.js');
+const { deleteTaskById } = require('../controllers/Tasks/delete_controller.js');
+const { addUser } = require('../controllers/auth/post_register.js');
+const { loginUser } = require('../controllers/auth/post_login.js');
+const auth = require('../controllers/auth/auth.js');
 
+//////////////////////////////
+//////  Task Routes  /////////
+//////////////////////////////
 // get all tasks
-router.get('/', getAllTasks);
+router.get('/tasks/', auth, getAllTasks);
 
 // get task by id
-router.get(':/id',getTaskById);
+router.get('/tasks/:id', auth ,getTaskById);
 
 // create tasks
-router.post('/', createTask);
+router.post('/tasks/', createTask);
 
 // update task by specific id
-router.put('/:id', updateTaskById);
+router.put('/tasks/:id', updateTaskById);
 
 // delete task by specific id
-router.delete('/:id', deleteTaskById);
+router.delete('/tasks/:id', deleteTaskById);
+
+
+
+//////////////////////////////
+//////  User Routes  /////////
+//////////////////////////////
+router.post('/users/register', addUser);
+
+router.post('/users/login', loginUser);
 
 module.exports = router;

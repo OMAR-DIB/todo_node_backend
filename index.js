@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 // use routes
-app.use('/api/tasks',routes);
+app.use('/api/',routes);
 
 app.get('/', (req, res) => {
     res.send('Hello Wfedffggf orld');

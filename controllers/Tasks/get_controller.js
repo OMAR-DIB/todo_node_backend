@@ -1,4 +1,4 @@
-const Task = require('../models/task.modules.js');
+const Task = require('../../models/task.modules.js');
 
 // get all tasks
 const getAllTasks = async (req, res) => {
