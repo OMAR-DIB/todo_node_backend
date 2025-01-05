@@ -3,7 +3,7 @@ const Task = require('../../models/task.modules.js');
 // get all tasks
 const getAllTasks = async (req, res) => {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({ User: req.user.id });
         res.status(200).json(tasks);
     } catch (error) {
         res.status(500).json({ error: error.message });

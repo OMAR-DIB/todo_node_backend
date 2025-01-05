@@ -2,11 +2,22 @@
 const mongoose = require('mongoose');
 // connect to express
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
 // import modules
 const Task = require('./models/task.modules.js');
 // import product routes
 const routes = require('./routes/task_route.js');
+
+// Allow requests from the frontend origin
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // If you're sending cookies or auth headers
+}));
+
+app.options('*', cors()); // Enable preflight response for all routes
 
 // middlware to enable json - urlencoded
 app.use(express.json());

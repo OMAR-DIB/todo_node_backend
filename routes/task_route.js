@@ -6,7 +6,7 @@ const { createTask } = require('../controllers/Tasks/post_controller.js');
 const { deleteTaskById } = require('../controllers/Tasks/delete_controller.js');
 const { addUser } = require('../controllers/auth/post_register.js');
 const { loginUser } = require('../controllers/auth/post_login.js');
-const auth = require('../controllers/auth/auth.js');
+const auth = require('../middleware/auth.js');
 
 //////////////////////////////
 //////  Task Routes  /////////
@@ -18,13 +18,13 @@ router.get('/tasks/', auth, getAllTasks);
 router.get('/tasks/:id', auth ,getTaskById);
 
 // create tasks
-router.post('/tasks/', createTask);
+router.post('/tasks/',auth, createTask);
 
 // update task by specific id
-router.put('/tasks/:id', updateTaskById);
+router.put('/tasks/:id',auth, updateTaskById);
 
 // delete task by specific id
-router.delete('/tasks/:id', deleteTaskById);
+router.delete('/tasks/:id',auth, deleteTaskById);
 
 
 
